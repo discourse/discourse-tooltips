@@ -4,6 +4,7 @@
 # authors: Robin Ward
 
 enabled_site_setting :tooltips_enabled
+register_asset "stylesheets/d-tooltip.scss"
 
 load File.expand_path('../lib/discourse_tooltips/engine.rb', __FILE__)
 
