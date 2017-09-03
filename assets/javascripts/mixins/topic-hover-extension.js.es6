@@ -1,7 +1,5 @@
 import { ajax } from 'discourse/lib/ajax';
 
-const SELECTOR = ".raw-topic-link";
-
 // How many extra post excerpts to retrieve
 const READ_AHEAD = 4;
 
@@ -40,57 +38,60 @@ function renderTooltip($this, text) {
   $dTooltip.fadeIn(200);
 }
 
-export default {
-  didInsertElement() {
-    this._super();
-    if (this.capabilities.touch) { return; }
+export function hoverExtension(selector) {
+  return {
+    didInsertElement() {
+      this._super();
+      if (this.capabilities.touch) { return; }
 
-    cancel();
+      cancel();
 
-    this.$(SELECTOR).on('mouseenter.discourse-tooltips', function(e) {
-      let $this = $(this);
-      let $parentTopicId = $(e.currentTarget).closest('[data-topic-id]');
-      let topicId = parseInt($parentTopicId.attr('data-topic-id'));
-      if (topicId) {
-        cancel();
+      this.$(selector).on('mouseenter.discourse-tooltips', function(e) {
+        let $this = $(this);
+        let $parentTopicId = $(e.currentTarget).closest('[data-topic-id]');
+        let topicId = parseInt($parentTopicId.attr('data-topic-id'));
+        if (topicId) {
+          cancel();
 
-        if (_cached[topicId]) {
-          return renderTooltip($this, _cached[topicId].excerpt);
+          if (_cached[topicId]) {
+            return renderTooltip($this, _cached[topicId].excerpt);
+          }
+
+          let topicIds = [topicId];
+
+          // Let's actually fetch the next few topic ids too, assuming the user will
+          // mouse over more below
+          let $siblings = $parentTopicId.nextAll(`[data-topic-id]:lt(${READ_AHEAD})`);
+          $siblings.each((idx, s) => {
+            let siblingId = parseInt(s.getAttribute('data-topic-id'));
+            if (!_cached[siblingId]) {
+              topicIds.push(siblingId);
+            }
+          });
+
+          _promise = ajax("/tooltip-previews", { data: { topic_ids: topicIds } });
+          _promise.then(r => {
+            if (r && r.excerpts) {
+              _.merge(_cached, r.excerpts);
+            }
+
+            renderTooltip($this, _cached[topicId].excerpt);
+          }).catch(() => {
+            // swallow errors - was probably aborted!
+          });
         }
+      });
+      this.$(selector).on('mouseleave.discourse-tooltips', () => cleanDom());
+    },
 
-        let topicIds = [topicId];
+    willDestroyElement() {
+      this._super();
+      if (this.capabilities.touch) { return; }
 
-        // Let's actually fetch the next few topic ids too, assuming the user will
-        // mouse over more below
-        let $siblings = $parentTopicId.nextAll(`[data-topic-id]:lt(${READ_AHEAD})`);
-        $siblings.each((idx, s) => {
-          let siblingId = parseInt(s.getAttribute('data-topic-id'));
-          if (!_cached[siblingId]) {
-            topicIds.push(siblingId);
-          }
-        });
+      cancel();
+      this.$(selector).off('mouseenter.discourse-tooltips');
+      this.$(selector).off('mouseleave.discourse-tooltips');
+    }
+  };
+}
 
-        _promise = ajax("/tooltip-previews", { data: { topic_ids: topicIds } });
-        _promise.then(r => {
-          if (r && r.excerpts) {
-            _.merge(_cached, r.excerpts);
-          }
-
-          renderTooltip($this, _cached[topicId].excerpt);
-        }).catch(() => {
-          // swallow errors - was probably aborted!
-        });
-      }
-    });
-    this.$(SELECTOR).on('mouseleave.discourse-tooltips', () => cleanDom());
-  },
-
-  willDestroyElement() {
-    this._super();
-    if (this.capabilities.touch) { return; }
-
-    cancel();
-    this.$(SELECTOR).off('mouseenter.discourse-tooltips');
-    this.$(SELECTOR).off('mouseleave.discourse-tooltips');
-  }
-};
