@@ -6,8 +6,8 @@ $d-tooltip-border: $primary-low;
   background-color: $d-tooltip-background;
   position: absolute;
   z-index: 1000;
-  width: 500px;
   border: 1px solid $d-tooltip-border;
+  max-width: 300px;
 }
 
 .d-tooltip-pointer {
