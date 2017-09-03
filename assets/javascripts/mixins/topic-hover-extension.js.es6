@@ -34,7 +34,6 @@ export default {
 
         _promise = ajax("/tooltip-previews", { data: { topic_ids: [topicId] } });
         _promise.then(r => {
-
           if (r && r.excerpts) {
             _.merge(_cached, r.excerpts);
           }
@@ -42,20 +41,17 @@ export default {
           $this.after(`<div class='d-tooltip'><div class='d-tooltip-pointer'></div><div class='d-tooltip-content'>${_cached[topicId].excerpt}</div></div></div>`);
 
           let $dTooltip = $('.d-tooltip');
-
           let tooltipWidth = $dTooltip.outerWidth();
           let tooltipHeight = $dTooltip.outerHeight();
           let elementWidth = $this.width();
           let elementHeight = $this.height();
-
           let elementX = $this.position().left;
           let y = parseInt(tooltipHeight / 2) + elementHeight;
           let x = elementX + (elementWidth / 2) - (tooltipWidth / 2);
+
           $dTooltip.css('left', `${x}px`);
           $dTooltip.css('margin-top', `${y}px`);
           $dTooltip.fadeIn(200);
-
-
         }).catch(() => {
           // swallow errors - was probably aborted!
         });
