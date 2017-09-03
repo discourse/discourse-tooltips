@@ -1,5 +1,10 @@
 import { ajax } from 'discourse/lib/ajax';
 
+const SELECTOR = ".raw-topic-link";
+
+// How many extra post excerpts to retrieve
+const READ_AHEAD = 4;
+
 let _cached = {
 };
 
@@ -17,7 +22,6 @@ function cancel() {
   cleanDom();
 }
 
-const SELECTOR = ".raw-topic-link";
 
 function renderTooltip($this, text) {
   $this.after(`<div class='d-tooltip'><div class='d-tooltip-pointer'></div><div class='d-tooltip-content'>${text}</div></div></div>`);
@@ -45,7 +49,8 @@ export default {
 
     this.$(SELECTOR).on('mouseenter.discourse-tooltips', function(e) {
       let $this = $(this);
-      let topicId = parseInt($(e.currentTarget).closest('[data-topic-id]').attr('data-topic-id'));
+      let $parentTopicId = $(e.currentTarget).closest('[data-topic-id]');
+      let topicId = parseInt($parentTopicId.attr('data-topic-id'));
       if (topicId) {
         cancel();
 
@@ -53,8 +58,19 @@ export default {
           return renderTooltip($this, _cached[topicId].excerpt);
         }
 
-        // If we don't have it cached, fetch it!
-        _promise = ajax("/tooltip-previews", { data: { topic_ids: [topicId] } });
+        let topicIds = [topicId];
+
+        // Let's actually fetch the next few topic ids too, assuming the user will
+        // mouse over more below
+        let $siblings = $parentTopicId.nextAll(`[data-topic-id]:lt(${READ_AHEAD})`);
+        $siblings.each((idx, s) => {
+          let siblingId = parseInt(s.getAttribute('data-topic-id'));
+          if (!_cached[siblingId]) {
+            topicIds.push(siblingId);
+          }
+        });
+
+        _promise = ajax("/tooltip-previews", { data: { topic_ids: topicIds } });
         _promise.then(r => {
           if (r && r.excerpts) {
             _.merge(_cached, r.excerpts);
