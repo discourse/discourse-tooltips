@@ -1,5 +1,5 @@
 $d-tooltip-background: $secondary;
-$d-tooltip-border: $primary-low;
+$d-tooltip-border: $primary-medium;
 
 .d-tooltip {
   display: none;
@@ -8,6 +8,7 @@ $d-tooltip-border: $primary-low;
   z-index: 1000;
   border: 1px solid $d-tooltip-border;
   max-width: 300px;
+  margin-top: 25px;
 }
 
 .d-tooltip-pointer {

@@ -26,15 +26,15 @@ function renderTooltip($this, text) {
 
   let $dTooltip = $('.d-tooltip');
   let tooltipWidth = $dTooltip.outerWidth();
-  let tooltipHeight = $dTooltip.outerHeight();
   let elementWidth = $this.width();
   let elementHeight = $this.height();
-  let elementX = $this.position().left;
-  let y = parseInt(tooltipHeight / 2) + elementHeight;
+  let elementPos = $this.position();
+  let elementX = elementPos.left;
+  let y = elementPos.top + elementHeight;
   let x = elementX + (elementWidth / 2) - (tooltipWidth / 2);
 
   $dTooltip.css('left', `${x}px`);
-  $dTooltip.css('margin-top', `${y}px`);
+  $dTooltip.css('top', `${y}px`);
   $dTooltip.fadeIn(200);
 }
 
