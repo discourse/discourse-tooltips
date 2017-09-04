@@ -5,6 +5,8 @@ the ability to preview a topic's contents when hovering the mouse
 over it, but in the future will be extended to other parts of the
 application.
 
+![Screenshot](screenshot.png)
+
 ## Installation
 
 Follow our [Install a Plugin](https://meta.discourse.org/t/install-a-plugin/19157)
