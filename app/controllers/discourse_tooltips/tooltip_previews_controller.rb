@@ -1,7 +1,7 @@
 module DiscourseTooltips
   class TooltipPreviewsController < ApplicationController
     requires_plugin DiscourseTooltips::PLUGIN_NAME
-    skip_before_filter :check_xhr
+    skip_before_action :check_xhr
 
     def index
       topic_ids = params.require(:topic_ids).map(&:to_i)
