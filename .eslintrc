@@ -42,7 +42,6 @@
     "invisible":true,
     "asyncRender":true,
     "selectDropdown":true,
-    "selectBox":true,
     "asyncTestDiscourse":true,
     "fixture":true,
     "find":true,
@@ -84,7 +83,9 @@
     "no-sequences": 2,
     "no-shadow": 2,
     "no-undef": 2,
-    "no-unused-vars": 2,
+    "no-unused-vars": [2, {
+      "argsIgnorePattern": "^_$"
+    }],
     "no-with": 2,
     "no-this-before-super": 2,
     "semi": 2,
@@ -93,9 +94,7 @@
     "wrap-iife": [
       2,
       "inside"
-    ],
-    "no-mixed-spaces-and-tabs": 2,
-    "no-trailing-spaces": 2
+    ]
   },
   "parser": "babel-eslint"
 }
