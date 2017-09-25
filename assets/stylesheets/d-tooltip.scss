@@ -9,6 +9,7 @@ $d-tooltip-border: $primary-medium;
   border: 1px solid $d-tooltip-border;
   max-width: 300px;
   margin-top: 25px;
+  overflow-wrap: break-word;
 }
 
 .d-tooltip-pointer {
