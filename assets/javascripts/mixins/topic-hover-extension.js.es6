@@ -46,7 +46,7 @@ export function hoverExtension(selector) {
 
       cancel();
 
-      this.$(selector).on('mouseenter.discourse-tooltips', function(e) {
+      this.$().on('mouseenter.discourse-tooltips', selector, function(e) {
         let $this = $(this);
         let $parentTopicId = $(e.currentTarget).closest('[data-topic-id]');
         let topicId = parseInt($parentTopicId.attr('data-topic-id'));
@@ -81,7 +81,7 @@ export function hoverExtension(selector) {
           });
         }
       });
-      this.$(selector).on('mouseleave.discourse-tooltips', () => cleanDom());
+      this.$().on('mouseleave.discourse-tooltips', selector, () => cleanDom());
     },
 
     willDestroyElement() {
@@ -89,8 +89,8 @@ export function hoverExtension(selector) {
       if (this.capabilities.touch) { return; }
 
       cancel();
-      this.$(selector).off('mouseenter.discourse-tooltips');
-      this.$(selector).off('mouseleave.discourse-tooltips');
+      this.$(selector).off('mouseenter.discourse-tooltips', selector);
+      this.$(selector).off('mouseleave.discourse-tooltips', selector);
     }
   };
 }
