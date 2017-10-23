@@ -3,13 +3,13 @@ import { ajax } from 'discourse/lib/ajax';
 // How many extra post excerpts to retrieve
 const READ_AHEAD = 4;
 
-let _cached = {
-};
-
+let _cached = { };
 let _promise;
+let _inside = false;
 
 function cleanDom() {
   $('.d-tooltip').remove();
+  _inside = false;
 }
 
 function cancel() {
@@ -38,6 +38,7 @@ function renderTooltip($this, text) {
   $dTooltip.fadeIn(200);
 }
 
+
 export function hoverExtension(selector) {
   return {
     didInsertElement() {
@@ -52,6 +53,7 @@ export function hoverExtension(selector) {
         let topicId = parseInt($parentTopicId.attr('data-topic-id'));
         if (topicId) {
           cancel();
+          _inside = true;
 
           if (_cached[topicId]) {
             return renderTooltip($this, _cached[topicId].excerpt);
@@ -75,7 +77,9 @@ export function hoverExtension(selector) {
               _.merge(_cached, r.excerpts);
             }
 
-            renderTooltip($this, _cached[topicId].excerpt);
+            if (_inside) {
+              renderTooltip($this, _cached[topicId].excerpt);
+            }
           }).catch(() => {
             // swallow errors - was probably aborted!
           });
