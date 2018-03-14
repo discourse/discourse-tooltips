@@ -34,7 +34,8 @@ function renderTooltip($this, text) {
   let x = elementX + (elementWidth / 2) - (tooltipWidth / 2);
 
   // make sure left side of the tooltip is not out of the screen
-  let mainLinkLeftOffset = $this.parents(".main-link").offset().left;
+  let $mainLink = $this.hasClass("main-link") ? $this : $this.parents(".main-link");
+  let mainLinkLeftOffset = $mainLink.offset().left;
   if ((mainLinkLeftOffset + x < 0)) {
     x = elementX;
   }

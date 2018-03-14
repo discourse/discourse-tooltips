@@ -1,7 +1,8 @@
 $d-tooltip-background: $secondary;
 $d-tooltip-border: $primary-medium;
 
-// absolute positioning is more consistent if parent has relatiove positioning
+// absolute positioning is more consistent if parent has relative positioning
+// especially for topic-list-item which is inside a table
 .topic-list-item .main-link {
   position: relative;
 }
