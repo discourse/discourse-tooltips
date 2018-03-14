@@ -7,7 +7,7 @@ export default {
   initialize() {
     withPluginApi('0.8.9', api => {
       api.modifyClass('component:topic-list', hoverExtension('.raw-topic-link'));
-      api.modifyClass('component:latest-topic-list', hoverExtension('.main-link'));
+      api.modifyClass('component:categories-topic-list', hoverExtension('.main-link'));
     });
   }
 };
