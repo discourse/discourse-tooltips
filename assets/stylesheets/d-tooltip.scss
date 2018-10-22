@@ -20,32 +20,32 @@ $d-tooltip-border: $primary-medium;
 
 .d-tooltip-pointer {
   position: relative;
-	background: $secondary;
+  background: $secondary;
 }
 
-.d-tooltip-pointer:before, .d-tooltip-pointer:after {
-	position: absolute;
-	pointer-events: none;
-	border: solid transparent;
-	bottom: 100%;
-	content: "";
-	height: 0;
-	width: 0;
+.d-tooltip-pointer:before,
+.d-tooltip-pointer:after {
+  position: absolute;
+  pointer-events: none;
+  border: solid transparent;
+  bottom: 100%;
+  content: "";
+  height: 0;
+  width: 0;
 }
 
-.d-tooltip-pointer:after
-{
-	border-bottom-color: $d-tooltip-background;
-	border-width: 8px;
-	left: 50%;
-	margin-left: -8px;
+.d-tooltip-pointer:after {
+  border-bottom-color: $d-tooltip-background;
+  border-width: 8px;
+  left: 50%;
+  margin-left: -8px;
 }
 
 .d-tooltip-pointer:before {
-	border-bottom-color: $d-tooltip-border;
-	border-width: 9px;
-	left: 50%;
-	margin-left: -9px;
+  border-bottom-color: $d-tooltip-border;
+  border-width: 9px;
+  left: 50%;
+  margin-left: -9px;
 }
 
 .d-tooltip-content {
