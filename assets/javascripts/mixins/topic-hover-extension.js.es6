@@ -19,6 +19,12 @@ export function hoverExtension(selector) {
     willDestroyElement() {
       this._super(...arguments);
 
+      if (this.capabilities.touch) {
+        return;
+      }
+
+      cancel();
+
       this.$().off("mouseenter.discourse-tooltips", selector);
       this.$().off("mouseleave.discourse-tooltips", selector);
     },
