@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # name: discourse-tooltips
 # about: Show tooltips in Discourse, including topic previews
 # version: 0.1

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ::DiscourseTooltips
   PLUGIN_NAME = "discourse-tooltips"
 

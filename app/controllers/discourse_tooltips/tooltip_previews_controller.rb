@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DiscourseTooltips
   class TooltipPreviewsController < ApplicationController
     requires_plugin DiscourseTooltips::PLUGIN_NAME
