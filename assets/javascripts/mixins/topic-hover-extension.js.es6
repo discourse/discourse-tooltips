@@ -50,14 +50,17 @@ function renderTooltip($this, text) {
 export function hoverExtension(selector) {
   return {
     didInsertElement() {
-      this._super();
+      this._super(...arguments);
+
       if (this.capabilities.touch) {
         return;
       }
 
       cancel();
 
-      this.$().on("mouseenter.discourse-tooltips", selector, function(e) {
+      $(this.element).on("mouseenter.discourse-tooltips", selector, function(
+        e
+      ) {
         let $this = $(this);
         let $parentTopicId = $(e.currentTarget).closest("[data-topic-id]");
         let topicId = parseInt($parentTopicId.attr("data-topic-id"));
@@ -101,18 +104,27 @@ export function hoverExtension(selector) {
             });
         }
       });
-      this.$().on("mouseleave.discourse-tooltips", selector, () => cleanDom());
+
+      $(this.element).on("mouseleave.discourse-tooltips", selector, () =>
+        cleanDom()
+      );
     },
 
     willDestroyElement() {
-      this._super();
+      this._super(...arguments);
+
       if (this.capabilities.touch) {
         return;
       }
 
       cancel();
-      this.$(selector).off("mouseenter.discourse-tooltips", selector);
-      this.$(selector).off("mouseleave.discourse-tooltips", selector);
+
+      $(this.element)
+        .find(selector)
+        .off(
+          "mouseenter.discourse-tooltips, mouseleave.discourse-tooltips",
+          selector
+        );
     }
   };
 }
