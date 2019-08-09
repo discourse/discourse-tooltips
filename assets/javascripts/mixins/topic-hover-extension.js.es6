@@ -47,6 +47,8 @@ function renderTooltip($this, text) {
   $dTooltip.fadeIn(200);
 }
 
+let tooltipsRateLimited = false;
+
 export function hoverExtension(selector) {
   return {
     didInsertElement() {
@@ -72,6 +74,10 @@ export function hoverExtension(selector) {
             return renderTooltip($this, _cached[topicId].excerpt);
           }
 
+          if (tooltipsRateLimited) {
+            return;
+          }
+
           let topicIds = [topicId];
 
           // Let's actually fetch the next few topic ids too, assuming the user will
@@ -89,6 +95,7 @@ export function hoverExtension(selector) {
           _promise = ajax("/tooltip-previews", {
             data: { topic_ids: topicIds }
           });
+
           _promise
             .then(r => {
               if (r && r.excerpts) {
@@ -99,7 +106,33 @@ export function hoverExtension(selector) {
                 renderTooltip($this, _cached[topicId].excerpt);
               }
             })
-            .catch(() => {
+            .catch(event => {
+              const xhr = event.jqXHR;
+              if (xhr && xhr.status === 429) {
+                tooltipsRateLimited = true;
+
+                let tryAfter =
+                  parseInt(
+                    xhr.getResponseHeader &&
+                      xhr.getResponseHeader("Retry-After"),
+                    10
+                  ) || 0;
+
+                tryAfter = tryAfter || 0;
+
+                if (tryAfter < 15) {
+                  tryAfter = 15;
+                }
+
+                this.rateLimiter = Ember.run.later(
+                  this,
+                  () => {
+                    tooltipsRateLimited = false;
+                  },
+                  tryAfter * 1000
+                );
+              }
+
               // swallow errors - was probably aborted!
             });
         }
@@ -111,6 +144,9 @@ export function hoverExtension(selector) {
     },
 
     willDestroyElement() {
+      Ember.run.cancel(this.rateLimiter);
+      tooltipsRateLimited = false;
+
       this._super(...arguments);
 
       if (this.capabilities.touch) {
