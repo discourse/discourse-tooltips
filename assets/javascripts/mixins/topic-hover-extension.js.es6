@@ -62,7 +62,9 @@ export function hoverExtension(selector) {
         e
       ) {
         let $this = $(this);
-        let $parentTopicId = $(e.currentTarget).closest("[data-topic-id]");
+        let $parentTopicId = $(e.currentTarget)
+          .parents("[data-topic-id]")
+          .last();
         let topicId = parseInt($parentTopicId.attr("data-topic-id"));
         if (topicId) {
           cancel();
@@ -87,7 +89,8 @@ export function hoverExtension(selector) {
           });
 
           _promise = ajax("/tooltip-previews", {
-            data: { topic_ids: topicIds }
+            data: { topic_ids: topicIds },
+            cache: true
           });
           _promise
             .then(r => {

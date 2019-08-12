@@ -8,6 +8,8 @@ module DiscourseTooltips
     def index
       topic_ids = params.require(:topic_ids).map(&:to_i)
 
+      discourse_expires_in 3.minute
+
       excerpts = {}
 
       Post.where(post_number: 1, topic_id: topic_ids).limit(20).each do |p|
