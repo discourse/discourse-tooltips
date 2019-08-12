@@ -1,3 +1,5 @@
 plugins:
   tooltips_enabled:
     default: true
+  tooltips_rate_limit_queue_seconds:
+    default: 0.1
