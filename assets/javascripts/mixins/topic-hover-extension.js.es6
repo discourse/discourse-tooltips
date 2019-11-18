@@ -67,7 +67,7 @@ export function hoverExtension(selector) {
         let $parentTopicId = $(e.currentTarget)
           .parents("[data-topic-id]")
           .last();
-        let topicId = parseInt($parentTopicId.attr("data-topic-id"));
+        let topicId = parseInt($parentTopicId.attr("data-topic-id"), 10);
         if (topicId) {
           cancel();
           _inside = true;
@@ -88,7 +88,7 @@ export function hoverExtension(selector) {
             `[data-topic-id]:lt(${READ_AHEAD})`
           );
           $siblings.each((idx, s) => {
-            let siblingId = parseInt(s.getAttribute("data-topic-id"));
+            let siblingId = parseInt(s.getAttribute("data-topic-id"), 10);
             if (!_cached[siblingId]) {
               topicIds.push(siblingId);
             }
