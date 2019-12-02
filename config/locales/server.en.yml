@@ -1,3 +1,4 @@
 en:
   site_settings:
     tooltips_enabled: "Preview topic contents on hover"
+    tooltips_rate_limit_queue_seconds: How frequently topic previews can be fetched from the server
