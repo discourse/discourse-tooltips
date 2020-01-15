@@ -64,9 +64,12 @@ export function hoverExtension(selector) {
         e
       ) {
         let $this = $(this);
-        let $parentTopicId = $(e.currentTarget)
-          .parents("[data-topic-id]")
-          .last();
+
+        let $parentTopicId = $(e.currentTarget);
+        if (typeof $parentTopicId.attr('data-topic-id') === "null") {
+          $parentTopicId = $parentTopicId.parents("[data-topic-id]").last();
+        }
+
         let topicId = parseInt($parentTopicId.attr("data-topic-id"), 10);
         if (topicId) {
           cancel();
