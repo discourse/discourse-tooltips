@@ -12,7 +12,7 @@ export default {
       );
       api.modifyClass(
         "component:categories-topic-list",
-        hoverExtension(".main-link")
+        hoverExtension(".main-link a.title")
       );
     });
   }
