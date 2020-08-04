@@ -1,5 +1,5 @@
-$d-tooltip-background: $secondary;
-$d-tooltip-border: $primary-medium;
+$d-tooltip-background: var(--secondary, $secondary);
+$d-tooltip-border: var(--primary-medium, $primary-medium);
 
 // absolute positioning is more consistent if parent has relative positioning
 // especially for topic-list-item which is inside a table
@@ -20,7 +20,7 @@ $d-tooltip-border: $primary-medium;
 
 .d-tooltip-pointer {
   position: relative;
-  background: $secondary;
+  background: var(--secondary, $secondary);
 }
 
 .d-tooltip-pointer:before,
@@ -51,6 +51,6 @@ $d-tooltip-border: $primary-medium;
 .d-tooltip-content {
   padding: 0.5em;
   font-size: 0.8em;
-  color: $primary-medium;
+  color: var(--primary-medium, $primary-medium);
   line-height: 1.4em;
 }
