@@ -5,16 +5,16 @@ acceptance("Discourse Tooltips", {
     server.get("/tooltip-previews", () => {
       return helper.response(200, {
         excerpts: {
-          "11557": {
-            excerpt: "hello world"
-          }
-        }
+          11557: {
+            excerpt: "hello world",
+          },
+        },
       });
     });
-  }
+  },
 });
 
-QUnit.test("display and hide", assert => {
+QUnit.test("display and hide", (assert) => {
   visit("/latest");
 
   andThen(() => {
