@@ -5,7 +5,7 @@ export default {
   name: "attach-hover-event",
 
   initialize() {
-    withPluginApi("0.8.9", api => {
+    withPluginApi("0.8.9", (api) => {
       api.modifyClass(
         "component:topic-list",
         hoverExtension(".raw-topic-link")
@@ -15,5 +15,5 @@ export default {
         hoverExtension(".main-link a.title")
       );
     });
-  }
+  },
 };
