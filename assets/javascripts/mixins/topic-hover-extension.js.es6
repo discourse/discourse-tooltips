@@ -1,4 +1,5 @@
 import { ajax } from "discourse/lib/ajax";
+import { deepMerge } from "discourse-common/lib/object";
 
 // How many extra post excerpts to retrieve
 const READ_AHEAD = 4;
@@ -105,7 +106,7 @@ export function hoverExtension(selector) {
           _promise
             .then((r) => {
               if (r && r.excerpts) {
-                _.merge(_cached, r.excerpts);
+                deepMerge(_cached, r.excerpts);
               }
 
               if (_inside) {
