@@ -1,7 +1,7 @@
-import { acceptance } from "helpers/qunit-helpers";
+import { acceptance } from "discourse/tests/helpers/qunit-helpers";
 
-acceptance("Discourse Tooltips", {
-  pretend(server, helper) {
+acceptance("Discourse Tooltips", function (needs) {
+  needs.pretender((server, helper) => {
     server.get("/tooltip-previews", () => {
       return helper.response(200, {
         excerpts: {
@@ -11,30 +11,34 @@ acceptance("Discourse Tooltips", {
         },
       });
     });
-  },
-});
-
-QUnit.test("display and hide", (assert) => {
-  visit("/latest");
-
-  andThen(() => {
-    assert.equal(find(".d-tooltip").length, 0, "tooltip is hidden");
   });
 
-  andThen(() => {
-    let topic = find("tr[data-topic-id=11557].topic-list-item .raw-topic-link");
-    topic.trigger("mouseenter");
-  });
+  test("display and hide", (assert) => {
+    visit("/latest");
 
-  andThen(() => {
-    assert.equal(find(".d-tooltip").length, 1, "tooltip is shown");
-    assert.equal(find(".d-tooltip-content").text(), "hello world");
+    andThen(() => {
+      assert.equal(find(".d-tooltip").length, 0, "tooltip is hidden");
+    });
 
-    let topic = find("tr[data-topic-id=11557].topic-list-item .raw-topic-link");
-    topic.trigger("mouseleave");
-  });
+    andThen(() => {
+      let topic = find(
+        "tr[data-topic-id=11557].topic-list-item .raw-topic-link"
+      );
+      topic.trigger("mouseenter");
+    });
 
-  andThen(() => {
-    assert.equal(find(".d-tooltip").length, 0, "tooltip is hidden again");
+    andThen(() => {
+      assert.equal(find(".d-tooltip").length, 1, "tooltip is shown");
+      assert.equal(find(".d-tooltip-content").text(), "hello world");
+
+      let topic = find(
+        "tr[data-topic-id=11557].topic-list-item .raw-topic-link"
+      );
+      topic.trigger("mouseleave");
+    });
+
+    andThen(() => {
+      assert.equal(find(".d-tooltip").length, 0, "tooltip is hidden again");
+    });
   });
 });
