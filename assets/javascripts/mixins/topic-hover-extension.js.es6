@@ -61,89 +61,91 @@ export function hoverExtension(selector) {
 
       cancel();
 
-      $(this.element).on("mouseenter.discourse-tooltips", selector, function (
-        e
-      ) {
-        let $this = $(this);
+      $(this.element).on(
+        "mouseenter.discourse-tooltips",
+        selector,
+        function (e) {
+          let $this = $(this);
 
-        let $parentTopicId = $(e.currentTarget);
-        if (typeof $parentTopicId.attr("data-topic-id") === "undefined") {
-          $parentTopicId = $parentTopicId.parents("[data-topic-id]").last();
-        }
-
-        let topicId = parseInt($parentTopicId.attr("data-topic-id"), 10);
-        if (topicId) {
-          cancel();
-          _inside = true;
-
-          if (_cached[topicId]) {
-            return renderTooltip($this, _cached[topicId].excerpt);
+          let $parentTopicId = $(e.currentTarget);
+          if (typeof $parentTopicId.attr("data-topic-id") === "undefined") {
+            $parentTopicId = $parentTopicId.parents("[data-topic-id]").last();
           }
 
-          if (tooltipsRateLimited) {
-            return;
-          }
+          let topicId = parseInt($parentTopicId.attr("data-topic-id"), 10);
+          if (topicId) {
+            cancel();
+            _inside = true;
 
-          let topicIds = [topicId];
-
-          // Let's actually fetch the next few topic ids too, assuming the user will
-          // mouse over more below
-          let $siblings = $parentTopicId.nextAll(
-            `[data-topic-id]:lt(${READ_AHEAD})`
-          );
-          $siblings.each((idx, s) => {
-            let siblingId = parseInt(s.getAttribute("data-topic-id"), 10);
-            if (!_cached[siblingId]) {
-              topicIds.push(siblingId);
+            if (_cached[topicId]) {
+              return renderTooltip($this, _cached[topicId].excerpt);
             }
-          });
 
-          _promise = ajax("/tooltip-previews", {
-            data: { topic_ids: topicIds },
-            cache: true,
-          });
+            if (tooltipsRateLimited) {
+              return;
+            }
 
-          _promise
-            .then((r) => {
-              if (r && r.excerpts) {
-                deepMerge(_cached, r.excerpts);
+            let topicIds = [topicId];
+
+            // Let's actually fetch the next few topic ids too, assuming the user will
+            // mouse over more below
+            let $siblings = $parentTopicId.nextAll(
+              `[data-topic-id]:lt(${READ_AHEAD})`
+            );
+            $siblings.each((idx, s) => {
+              let siblingId = parseInt(s.getAttribute("data-topic-id"), 10);
+              if (!_cached[siblingId]) {
+                topicIds.push(siblingId);
               }
+            });
 
-              if (_inside) {
-                renderTooltip($this, _cached[topicId].excerpt);
-              }
-            })
-            .catch((event) => {
-              const xhr = event.jqXHR;
-              if (xhr && xhr.status === 429) {
-                tooltipsRateLimited = true;
+            _promise = ajax("/tooltip-previews", {
+              data: { topic_ids: topicIds },
+              cache: true,
+            });
 
-                let tryAfter =
-                  parseInt(
-                    xhr.getResponseHeader &&
-                      xhr.getResponseHeader("Retry-After"),
-                    10
-                  ) || 0;
-
-                tryAfter = tryAfter || 0;
-
-                if (tryAfter < 15) {
-                  tryAfter = 15;
+            _promise
+              .then((r) => {
+                if (r && r.excerpts) {
+                  deepMerge(_cached, r.excerpts);
                 }
 
-                this.rateLimiter = Ember.run.later(
-                  this,
-                  () => {
-                    tooltipsRateLimited = false;
-                  },
-                  tryAfter * 1000
-                );
-              }
+                if (_inside) {
+                  renderTooltip($this, _cached[topicId].excerpt);
+                }
+              })
+              .catch((event) => {
+                const xhr = event.jqXHR;
+                if (xhr && xhr.status === 429) {
+                  tooltipsRateLimited = true;
 
-              // swallow errors - was probably aborted!
-            });
+                  let tryAfter =
+                    parseInt(
+                      xhr.getResponseHeader &&
+                        xhr.getResponseHeader("Retry-After"),
+                      10
+                    ) || 0;
+
+                  tryAfter = tryAfter || 0;
+
+                  if (tryAfter < 15) {
+                    tryAfter = 15;
+                  }
+
+                  this.rateLimiter = Ember.run.later(
+                    this,
+                    () => {
+                      tooltipsRateLimited = false;
+                    },
+                    tryAfter * 1000
+                  );
+                }
+
+                // swallow errors - was probably aborted!
+              });
+          }
         }
-      });
+      );
 
       $(this.element).on("mouseleave.discourse-tooltips", selector, () =>
         cleanDom()
