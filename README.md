@@ -1,5 +1,7 @@
 # discourse-tooltips
 
+https://meta.discourse.org/t/discourse-tooltips-preview-topic-contents-on-hover/69304/
+
 Adds tooltip support to Discourse. Right now this plugin only adds
 the ability to preview a topic's contents when hovering the mouse
 over it, but in the future will be extended to other parts of the
