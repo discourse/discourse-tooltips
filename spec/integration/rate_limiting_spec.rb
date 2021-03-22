@@ -22,7 +22,7 @@ describe "RateLimiting previews" do
       }
 
     expect(response.status).to eq(429)
-    expect(response.headers['Retry-After']).to be > 29
+    expect(response.headers['Retry-After'].to_i).to be > 29
   end
 
   it "will not rate limit when all is good" do
