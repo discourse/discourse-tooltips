@@ -1,0 +1,10 @@
+# WARNING: Never edit this file.
+# It will be overwritten when translations are pulled from Crowdin.
+#
+# To work with us on translations, join this project:
+# https://translate.discourse.org/
+
+sv:
+  site_settings:
+    tooltips_enabled: "Förhandsgranska ämnesinnehåll om pekaren hålls över det"
+    tooltips_rate_limit_queue_seconds: Hur ofta förhandsgranskningar av ämnen kan hämtas från servern
