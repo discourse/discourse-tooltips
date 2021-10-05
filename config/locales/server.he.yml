@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 he:
+  site_settings:
+    tooltips_enabled: "הצגה מקדימה של תכני הנושאים עם מעבר העכבר"
+    tooltips_rate_limit_queue_seconds: מה התדירות בה מותר לשלוף תצוגות מקדימות של נושאים מהשרת

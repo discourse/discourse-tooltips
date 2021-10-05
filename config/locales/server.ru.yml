@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ru:
+  site_settings:
+    tooltips_enabled: "Предварительный просмотр содержимого темы при наведении курсора"
+    tooltips_rate_limit_queue_seconds: Как часто можно получать предварительные просмотры тем с сервера
