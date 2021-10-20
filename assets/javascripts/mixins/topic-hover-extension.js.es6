@@ -102,7 +102,7 @@ export function hoverExtension(selector) {
             _promise = ajax("/tooltip-previews", {
               data: { topic_ids: topicIds },
               cache: true
-            });yarn
+            });
 
             _promise
               .then(r => {
