@@ -6,14 +6,14 @@ acceptance("Discourse Tooltips", function (needs) {
       return helper.response(200, {
         excerpts: {
           11557: {
-            excerpt: "hello world"
-          }
-        }
+            excerpt: "hello world",
+          },
+        },
       });
     });
   });
 
-  test("display and hide", assert => {
+  test("display and hide", (assert) => {
     visit("/latest");
 
     andThen(() => {
