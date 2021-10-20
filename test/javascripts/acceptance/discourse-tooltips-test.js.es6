@@ -32,7 +32,7 @@ acceptance("Discourse Tooltips", function (needs) {
       assert.equal(find(".d-tooltip-content").text(), "hello world");
 
       let topic = find(
-        "tr[data-topic-id=11557].topic-list-item .raw-topic-link"
+        ".topic-list-item[data-topic-id=11557] .raw-topic-link"
       );
       topic.trigger("mouseleave");
     });
