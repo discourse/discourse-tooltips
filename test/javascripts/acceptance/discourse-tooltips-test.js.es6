@@ -6,14 +6,14 @@ acceptance("Discourse Tooltips", function (needs) {
       return helper.response(200, {
         excerpts: {
           11557: {
-            excerpt: "hello world",
-          },
-        },
+            excerpt: "hello world"
+          }
+        }
       });
     });
   });
 
-  test("display and hide", (assert) => {
+  test("display and hide", assert => {
     visit("/latest");
 
     andThen(() => {
@@ -21,9 +21,7 @@ acceptance("Discourse Tooltips", function (needs) {
     });
 
     andThen(() => {
-      let topic = find(
-        ".topic-list-item[data-topic-id=11557] .raw-topic-link"
-      );
+      let topic = find(".topic-list-item[data-topic-id=11557] .raw-topic-link");
       topic.trigger("mouseenter");
     });
 
@@ -31,9 +29,7 @@ acceptance("Discourse Tooltips", function (needs) {
       assert.equal(find(".d-tooltip").length, 1, "tooltip is shown");
       assert.equal(find(".d-tooltip-content").text(), "hello world");
 
-      let topic = find(
-        ".topic-list-item[data-topic-id=11557] .raw-topic-link"
-      );
+      let topic = find(".topic-list-item[data-topic-id=11557] .raw-topic-link");
       topic.trigger("mouseleave");
     });
 
