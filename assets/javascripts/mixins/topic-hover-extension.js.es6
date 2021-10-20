@@ -101,11 +101,11 @@ export function hoverExtension(selector) {
 
             _promise = ajax("/tooltip-previews", {
               data: { topic_ids: topicIds },
-              cache: true
+              cache: true,
             });
 
             _promise
-              .then(r => {
+              .then((r) => {
                 if (r && r.excerpts) {
                   deepMerge(_cached, r.excerpts);
                 }
@@ -114,7 +114,7 @@ export function hoverExtension(selector) {
                   renderTooltip($this, _cached[topicId].excerpt);
                 }
               })
-              .catch(event => {
+              .catch((event) => {
                 const xhr = event.jqXHR;
                 if (xhr && xhr.status === 429) {
                   tooltipsRateLimited = true;
@@ -170,6 +170,6 @@ export function hoverExtension(selector) {
           "mouseenter.discourse-tooltips, mouseleave.discourse-tooltips",
           selector
         );
-    }
+    },
   };
 }
