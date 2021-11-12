@@ -52,6 +52,8 @@ let tooltipsRateLimited = false;
 
 export function hoverExtension(selector) {
   return {
+    pluginId: "discourse-tooltips",
+
     didInsertElement() {
       this._super(...arguments);
 
