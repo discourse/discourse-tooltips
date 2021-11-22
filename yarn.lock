@@ -665,6 +665,11 @@ esutils@^2.0.2:
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
 
+event-from@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/event-from/-/event-from-1.0.0.tgz#95a9f320bdd94e086a2fe076e81a7556d9994b16"
+  integrity sha512-r3eGcStSVfYo5wKcZlIiNy4qZhYeW0BKmvYv35B38k6RDWN+WJ68DOxpnX6LSGJX9hJgRoC86iwypkPUUhXd8w==
+
 external-editor@^3.0.3:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/external-editor/-/external-editor-3.1.0.tgz#cb03f740befae03ea4d283caed2741a83f335495"

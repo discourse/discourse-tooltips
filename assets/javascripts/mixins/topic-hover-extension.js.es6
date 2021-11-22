@@ -1,5 +1,6 @@
 import { ajax } from "discourse/lib/ajax";
 import { deepMerge } from "discourse-common/lib/object";
+import { eventFrom } from "discourse/plugins/discourse-tooltips/discourse/lib/event-from";
 
 // How many extra post excerpts to retrieve
 const READ_AHEAD = 4;
@@ -57,16 +58,16 @@ export function hoverExtension(selector) {
     didInsertElement() {
       this._super(...arguments);
 
-      if (this.capabilities.touch) {
-        return;
-      }
-
       cancel();
 
       $(this.element).on(
         "mouseenter.discourse-tooltips",
         selector,
         function (e) {
+          if (eventFrom(e) !== "mouse") {
+            return;
+          }
+
           let $this = $(this);
 
           let $parentTopicId = $(e.currentTarget);
@@ -149,9 +150,13 @@ export function hoverExtension(selector) {
         }
       );
 
-      $(this.element).on("mouseleave.discourse-tooltips", selector, () =>
-        cleanDom()
-      );
+      $(this.element).on("mouseleave.discourse-tooltips", selector, (e) => {
+        if (eventFrom(e) !== "mouse") {
+          return;
+        }
+
+        cleanDom();
+      });
     },
 
     willDestroyElement() {
@@ -159,10 +164,6 @@ export function hoverExtension(selector) {
       tooltipsRateLimited = false;
 
       this._super(...arguments);
-
-      if (this.capabilities.touch) {
-        return;
-      }
 
       cancel();
 

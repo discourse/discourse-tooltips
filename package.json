@@ -6,5 +6,11 @@
   "license": "MIT",
   "devDependencies": {
     "eslint-config-discourse": "^1.1.8"
+  },
+  "dependencies": {
+    "event-from": "^1.0.0"
+  },
+  "scripts": {
+    "postinstall": "cp node_modules/event-from/dist/event-from.esm.js assets/javascripts/discourse/lib/event-from.js.es6"
   }
 }
