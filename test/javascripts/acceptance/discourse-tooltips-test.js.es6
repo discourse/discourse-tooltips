@@ -21,7 +21,7 @@ acceptance("Discourse Tooltips", function (needs) {
 
   test("display and hide", async function (assert) {
     await visit("/latest");
-    assert.equal(find(".d-tooltip").length, 0, "tooltip is hidden");
+    assert.ok(!visible(".d-tooltip"), "tooltip is hidden");
 
     let topicLink = query(".topic-list-item:first-child .raw-topic-link");
 
