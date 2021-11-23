@@ -5,6 +5,9 @@
   "author": "Discourse",
   "license": "MIT",
   "devDependencies": {
-    "eslint-config-discourse": "^1.1.8"
+    "eslint-config-discourse": "^1.1.9"
+  },
+  "dependencies": {
+    "event-from": "^1.0.0"
   }
 }
