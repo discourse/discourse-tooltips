@@ -1,3 +1,6 @@
+/* eslint-disable */
+// prettier-ignore
+
 let recentEventFrom = "key";
 let recentFocusFrom = recentEventFrom;
 let recentTouch = false;
