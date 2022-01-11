@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ja:
+  site_settings:
+    tooltips_enabled: "ホバー時にトピックのコンテンツをプレビューする"
+    tooltips_rate_limit_queue_seconds: サーバーからトピックプレビューを取得できる頻度

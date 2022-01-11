@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 de:
+  site_settings:
+    tooltips_enabled: "Vorschau des Themeninhalts bei Kontakt mit Mauszeiger"
+    tooltips_rate_limit_queue_seconds: Wie häufig Themenvorschauen vom Server abgerufen werden können

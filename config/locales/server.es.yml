@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 es:
+  site_settings:
+    tooltips_enabled: "Vista previa del contenido del tema al pasar el ratón por encima"
+    tooltips_rate_limit_queue_seconds: Con qué frecuencia se pueden obtener las vistas previas de los temas desde el servidor
