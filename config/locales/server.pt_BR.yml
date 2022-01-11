@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 pt_BR:
+  site_settings:
+    tooltips_enabled: "Pré-visualizar conteúdo do tópico ao passar o mouse"
+    tooltips_rate_limit_queue_seconds: Frequência com que as pré-visualizações de tópico podem ser obtidas no servidor

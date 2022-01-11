@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 it:
+  site_settings:
+    tooltips_enabled: "Anteprima dei contenuti dell'argomento al passaggio del mouse"
+    tooltips_rate_limit_queue_seconds: Frequenza con cui le anteprime degli argomenti possono essere recuperate dal server

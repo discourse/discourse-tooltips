@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ar:
+  site_settings:
+    tooltips_enabled: "معاينة محتوى الموضوعات عند التمرير فوقها"
+    tooltips_rate_limit_queue_seconds: عدد المرات التي يمكن فيها جلب معاينات الموضوعات من الخادم
