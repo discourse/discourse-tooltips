@@ -19,14 +19,13 @@ To enable, make sure the `tooltips enabled` site setting is set to true.
 
 ## Contributing
 
-Help make this plugin better by submitting a PR.  It's as easy as 1-2-3
+Help make this plugin better by submitting a PR. It's as easy as 1-2-3
 
-* fork the repo
-* create a feature branch
-* rebase off master and send the pr
+- fork the repo
+- create a feature branch
+- rebase off master and send the pr
 
 This project uses MIT-LICENSE.
-
 
 ## Issues
 
