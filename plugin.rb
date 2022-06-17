@@ -5,6 +5,7 @@
 # version: 0.1
 # authors: Robin Ward
 # url: https://github.com/discourse/discourse-tooltips
+# transpile_js: true
 
 enabled_site_setting :tooltips_enabled
 register_asset "stylesheets/d-tooltip.scss"
