@@ -1,13 +1,10 @@
 {
-  "name": "discourse",
-  "version": "1.0.0",
-  "repository": "git@github.com:discourse/discourse-tooltips.git",
+  "name": "discourse-tooltips",
+  "version": "0.1.0",
+  "repository": "https://github.com/discourse/discourse-tooltips",
   "author": "Discourse",
   "license": "MIT",
   "devDependencies": {
-    "eslint-config-discourse": "^1.1.9"
-  },
-  "dependencies": {
-    "event-from": "^1.0.0"
+    "eslint-config-discourse": "^3.2.0"
   }
 }
