@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 nl:
+  site_settings:
+    tooltips_enabled: "Voorbeeld van topiccontent bekijken bij muis over"
+    tooltips_rate_limit_queue_seconds: Hoe vaak topicvoorbeelden kunnen wordenopgehaald van de server
