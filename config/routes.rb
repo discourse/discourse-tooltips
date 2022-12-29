@@ -1,5 +1,3 @@
 # frozen_string_literal: true
 
-DiscourseTooltips::Engine.routes.draw do
-  get "/" => 'tooltip_previews#index'
-end
+DiscourseTooltips::Engine.routes.draw { get "/" => "tooltip_previews#index" }
