@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  site_settings:
+    tooltips_enabled: "Üzerine gelindiğinde konu içeriğini ön izleme"
+    tooltips_rate_limit_queue_seconds: Konu ön izlemelerinin sunucudan ne sıklıkla alınabileceği
