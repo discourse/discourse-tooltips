@@ -24,6 +24,10 @@ function cancel() {
 }
 
 function renderTooltip($this, text) {
+  if (!text) {
+    return;
+  }
+
   $this.after(
     `<div class='d-tooltip'><div class='d-tooltip-pointer'></div><div class='d-tooltip-content'>${text}</div></div></div>`
   );
