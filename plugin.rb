@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # name: discourse-tooltips
-# about: Show tooltips in Discourse, including topic previews
+# about: Allows for the previewing of the contents of topics on hover.
+# meta_topic_id: 69304
 # version: 0.1
 # authors: Robin Ward
 # url: https://github.com/discourse/discourse-tooltips
