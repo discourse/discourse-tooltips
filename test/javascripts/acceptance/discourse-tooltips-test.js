@@ -1,10 +1,10 @@
+import { triggerEvent, visit } from "@ember/test-helpers";
+import { test } from "qunit";
 import {
   acceptance,
   query,
   visible,
 } from "discourse/tests/helpers/qunit-helpers";
-import { test } from "qunit";
-import { triggerEvent, visit } from "@ember/test-helpers";
 
 acceptance("Discourse Tooltips", function (needs) {
   needs.pretender((server, helper) => {
