@@ -1,7 +1,8 @@
+import { cancel as emberCancel, later } from "@ember/runloop";
+import $ from "jquery";
 import { ajax } from "discourse/lib/ajax";
 import { deepMerge } from "discourse-common/lib/object";
 import { eventFrom } from "discourse/plugins/discourse-tooltips/discourse/lib/event-from";
-import { cancel as emberCancel, later } from "@ember/runloop";
 
 // How many extra post excerpts to retrieve
 const READ_AHEAD = 4;
