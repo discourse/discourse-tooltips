@@ -1,4 +1,4 @@
-import { cancel as emberCancel, later } from "@ember/runloop";
+import { cancel as emberCancel, later, run } from "@ember/runloop";
 import $ from "jquery";
 import { ajax } from "discourse/lib/ajax";
 import { deepMerge } from "discourse-common/lib/object";
@@ -161,7 +161,7 @@ export function hoverExtension(selector) {
           return;
         }
 
-        cleanDom();
+        run(() => cleanDom());
       });
     },
 
