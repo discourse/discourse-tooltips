@@ -10,10 +10,13 @@
 enabled_site_setting :tooltips_enabled
 register_asset "stylesheets/d-tooltip.scss"
 
-require_relative "lib/discourse_tooltips/engine"
-
 after_initialize do
-  Discourse::Application.routes.append do
-    mount ::DiscourseTooltips::Engine, at: "/tooltip-previews"
+  module TopicSerializerExtension
+    def include_excerpt?
+      return true if SiteSetting.tooltips_enabled
+      super
+    end
   end
+
+  reloadable_patch { ::ListableTopicSerializer.prepend(TopicSerializerExtension) }
 end
