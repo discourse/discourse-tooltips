@@ -1,3 +1,6 @@
+// TODO: remove this file once raw-hbs topic list is removed
+// Search keyword: discourse.hbr-topic-list-overrides
+
 /* eslint-disable */
 // prettier-ignore
 
