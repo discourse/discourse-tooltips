@@ -19,12 +19,12 @@ RSpec.describe "Discourse Tooltips", type: :system do
     visit "/latest"
 
     expect(page).to have_css(".topic-list-item", count: 2)
-    expect(page).not_to have_css(".d-tooltip")
+    expect(page).not_to have_css(".d-tooltip-content")
 
     find("tr[data-topic-id='#{topic1.id}'] .raw-topic-link").hover
-    expect(page).to have_css(".d-tooltip", text: "post for topic one")
+    expect(page).to have_css(".d-tooltip-content", text: "post for topic one")
 
     find("tr[data-topic-id='#{topic2.id}'] .raw-topic-link").hover
-    expect(page).to have_css(".d-tooltip", text: "post for topic two")
+    expect(page).to have_css(".d-tooltip-content", text: "post for topic two")
   end
 end
