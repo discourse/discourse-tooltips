@@ -1,3 +1,6 @@
+// TODO: remove this file once raw-hbs topic list is removed
+// Search keyword: discourse.hbr-topic-list-overrides
+
 import { run } from "@ember/runloop";
 import $ from "jquery";
 import { eventFrom } from "discourse/plugins/discourse-tooltips/discourse/lib/event-from";
@@ -49,6 +52,8 @@ export function hoverExtension(selector) {
       this._super(...arguments);
 
       cancel();
+
+      this.element.classList.add("discourse-tooltips-legacy");
 
       $(this.element).on("mouseenter.discourse-tooltips", selector, (e) => {
         if (eventFrom(e) !== "mouse") {

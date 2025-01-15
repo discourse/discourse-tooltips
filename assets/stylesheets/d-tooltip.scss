@@ -1,56 +1,65 @@
-$d-tooltip-background: var(--secondary);
-$d-tooltip-border: var(--primary-medium);
-
-// absolute positioning is more consistent if parent has relative positioning
-// especially for topic-list-item which is inside a table
-.topic-list-item .main-link {
-  position: relative;
-}
-
-.d-tooltip {
-  display: none;
-  background-color: $d-tooltip-background;
-  position: absolute;
-  z-index: 1000;
-  border: 1px solid $d-tooltip-border;
-  max-width: 300px;
-  margin-top: 25px;
-  overflow-wrap: break-word;
-}
-
-.d-tooltip-pointer {
-  position: relative;
-  background: var(--secondary);
-}
-
-.d-tooltip-pointer:before,
-.d-tooltip-pointer:after {
-  position: absolute;
-  pointer-events: none;
-  border: solid transparent;
-  bottom: 100%;
-  content: "";
-  height: 0;
-  width: 0;
-}
-
-.d-tooltip-pointer:after {
-  border-bottom-color: $d-tooltip-background;
-  border-width: 8px;
-  left: 50%;
-  margin-left: -8px;
-}
-
-.d-tooltip-pointer:before {
-  border-bottom-color: $d-tooltip-border;
-  border-width: 9px;
-  left: 50%;
-  margin-left: -9px;
-}
-
 .d-tooltip-content {
-  padding: 0.5em;
   font-size: 0.8em;
   color: var(--primary-medium);
-  line-height: 1.4em;
+}
+
+// TODO: remove legacy styles once raw-hbs topic list is removed
+// Search keyword: discourse.hbr-topic-list-overrides
+.discourse-tooltips-legacy {
+  $d-tooltip-background: var(--secondary);
+  $d-tooltip-border: var(--primary-medium);
+
+  // absolute positioning is more consistent if parent has relative positioning
+  // especially for topic-list-item which is inside a table
+  .topic-list-item .main-link {
+    position: relative;
+  }
+
+  .d-tooltip {
+    display: none;
+    background-color: $d-tooltip-background;
+    position: absolute;
+    z-index: 1000;
+    border: 1px solid $d-tooltip-border;
+    max-width: 300px;
+    margin-top: 25px;
+    overflow-wrap: break-word;
+  }
+
+  .d-tooltip-pointer {
+    position: relative;
+    background: var(--secondary);
+  }
+
+  .d-tooltip-pointer:before,
+  .d-tooltip-pointer:after {
+    position: absolute;
+    pointer-events: none;
+    border: solid transparent;
+    bottom: 100%;
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  .d-tooltip-pointer:after {
+    border-bottom-color: $d-tooltip-background;
+    border-width: 8px;
+    left: 50%;
+    margin-left: -8px;
+  }
+
+  .d-tooltip-pointer:before {
+    border-bottom-color: $d-tooltip-border;
+    border-width: 9px;
+    left: 50%;
+    margin-left: -9px;
+  }
+
+  .d-tooltip-content {
+    padding: 0.5em;
+    font-size: 0.8em;
+    color: var(--primary-medium);
+    line-height: 1.4em;
+  }
 }
