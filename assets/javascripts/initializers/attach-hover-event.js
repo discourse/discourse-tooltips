@@ -1,5 +1,5 @@
+import { withSilencedDeprecations } from "discourse/lib/deprecated";
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { withSilencedDeprecations } from "discourse-common/lib/deprecated";
 import { hoverExtension } from "discourse/plugins/discourse-tooltips/mixins/topic-hover-extension";
 
 export default {
