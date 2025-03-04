@@ -1,10 +1,4 @@
-# WARNING: Never edit this file.
-# It will be overwritten when translations are pulled from Crowdin.
-#
-# To work with us on translations, join this project:
-# https://translate.discourse.org/
-
-pt_BR:
+pt:
   site_settings:
     tooltips_enabled: "Pré-visualizar conteúdo do tópico ao passar o mouse"
     tooltips_rate_limit_queue_seconds: Frequência com que as pré-visualizações de tópico podem ser obtidas no servidor

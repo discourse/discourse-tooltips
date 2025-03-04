@@ -1,10 +1,4 @@
-# WARNING: Never edit this file.
-# It will be overwritten when translations are pulled from Crowdin.
-#
-# To work with us on translations, join this project:
-# https://translate.discourse.org/
-
-tr_TR:
+tr:
   site_settings:
     tooltips_enabled: "Üzerine gelindiğinde konu içeriğini ön izleyin"
     tooltips_rate_limit_queue_seconds: Konu ön izlemelerinin sunucudan ne sıklıkla alınabileceği

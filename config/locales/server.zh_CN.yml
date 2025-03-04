@@ -1,10 +1,4 @@
-# WARNING: Never edit this file.
-# It will be overwritten when translations are pulled from Crowdin.
-#
-# To work with us on translations, join this project:
-# https://translate.discourse.org/
-
-zh_CN:
+zh-CN:
   site_settings:
     tooltips_enabled: "悬停时预览话题内容"
     tooltips_rate_limit_queue_seconds: 从服务器获取话题预览的频率
