@@ -63,3 +63,10 @@
     line-height: 1.4em;
   }
 }
+
+.topic-list-body .link-top-line {
+  .fk-d-tooltip__trigger,
+  .fk-d-tooltip__trigger-container {
+    display: inline;
+  }
+}
