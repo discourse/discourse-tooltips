@@ -31,8 +31,8 @@
     background: var(--secondary);
   }
 
-  .d-tooltip-pointer:before,
-  .d-tooltip-pointer:after {
+  .d-tooltip-pointer::before,
+  .d-tooltip-pointer::after {
     position: absolute;
     pointer-events: none;
     border: solid transparent;
@@ -42,14 +42,14 @@
     width: 0;
   }
 
-  .d-tooltip-pointer:after {
+  .d-tooltip-pointer::after {
     border-bottom-color: $d-tooltip-background;
     border-width: 8px;
     left: 50%;
     margin-left: -8px;
   }
 
-  .d-tooltip-pointer:before {
+  .d-tooltip-pointer::before {
     border-bottom-color: $d-tooltip-border;
     border-width: 9px;
     left: 50%;
