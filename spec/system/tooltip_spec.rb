@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Discourse Tooltips", type: :system do
+RSpec.describe "Discourse Tooltips" do
   before { SiteSetting.tooltips_enabled = true }
 
   fab!(:topic1) do
