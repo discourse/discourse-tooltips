@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 el:
+  site_settings:
+    tooltips_enabled: "Προεπισκόπηση περιεχομένων θέματος κατά την τοποθέτηση του δείκτη του ποντικιού"
+    tooltips_rate_limit_queue_seconds: Πόσο συχνά μπορούν να ληφθούν προεπισκοπήσεις θεμάτων από το διακομιστή
