@@ -1,5 +1,5 @@
 import { htmlSafe } from "@ember/template";
-import DTooltip from "float-kit/components/d-tooltip";
+import DTooltip from "discourse/float-kit/components/d-tooltip";
 
 const triggers = {
   mobile: ["hover"],
