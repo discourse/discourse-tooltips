@@ -1,4 +1,4 @@
-import { htmlSafe } from "@ember/template";
+import { trustHTML } from "@ember/template";
 import DTooltip from "discourse/float-kit/components/d-tooltip";
 
 const triggers = {
@@ -13,7 +13,7 @@ const triggers = {
     </:trigger>
     <:content>
       <div class="d-tooltip-content">
-        {{htmlSafe @outletArgs.topic.excerpt}}
+        {{trustHTML @outletArgs.topic.excerpt}}
       </div>
     </:content>
   </DTooltip>
